@@ -1,8 +1,20 @@
-const formulario = document.querySelector("#formulario");
-const inputNome = document.querySelector("#nome");
-const inputServico = document.querySelector("#servico");
-const inputQuantidade = document.querySelector("#quantidade");
-const resultado = document.querySelector("#resultado");
+const formulario = document.querySelector("#formulario")
+const inputNome = document.querySelector("#nome")
+const inputServico = document.querySelector("#serviço")
+const inputQuantidade = document.querySelector("#quantidade")
+const resultado = document.querySelector("#resultado") 
+
+const servicos = [
+ {nome: "Formatação": preco: 120},
+ {nome : "Limpeza": preco:  80},
+ {nome: "Instalação": preco: 50},
+];
+
+console.log(servicos.length);
+
+for (let i = 0; i < servicos.length; i++) {
+  console.log(servicos[i]);
+}
 
 formulario.addEventListener("submit", function (event) {
   event.preventDefault();
