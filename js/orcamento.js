@@ -1,19 +1,21 @@
-const formulario = document.querySelector("#formulario")
-const inputNome = document.querySelector("#nome")
-const inputServico = document.querySelector("#serviço")
-const inputQuantidade = document.querySelector("#quantidade")
-const resultado = document.querySelector("#resultado") 
+const formulario = document.querySelector("#formulario");
+const inputNome = document.querySelector("#nome");
+const inputServico = document.querySelector("#serviço");
+const inputQuantidade = document.querySelector("#quantidade");
+const resultado = document.querySelector("#resultado");
 
 const servicos = [
- {nome: "Formatação": preco: 120},
- {nome : "Limpeza": preco:  80},
- {nome: "Instalação": preco: 50},
+  { nome: "Formatação", preco: 120 },
+  { nome: "Limpeza", preco: 80 },
+  { nome: "Manutenção", preco: 50 },
 ];
 
-console.log(servicos.length);
-
 for (let i = 0; i < servicos.length; i++) {
-  console.log(servicos[i]);
+  const option = document.createElement("option");
+  option.value = servicos[i].preco;
+  option.textContent = `${servicos[i].nome} - R$ ${servicos[i].preco}`;
+
+  inputServico.appendChild(option);
 }
 
 formulario.addEventListener("submit", function (event) {
@@ -47,3 +49,31 @@ formulario.addEventListener("submit", function (event) {
 function calcularTotal(preco, quantidade) {
   return preco * quantidade;
 }
+const formCadastro = document.querySelector("#formCadastro");
+const novoNome = document.querySelector("#novoNome");
+const novoPreco = document.querySelector("#novoPreco");
+const avisoCadastro = document.querySelector("#avisoCadastro");
+
+formCadastro.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const nome = novoNome.value.trim();
+  const precoTexto = novoPreco.value.trim();
+  const preco = Number(precoTexto);
+
+  avisoCadastro.classList.remove("d-none", "alert-success", "alert-warning");
+
+  if (
+    nome === "" ||
+    precoTexto === "" ||
+    !Number.isFinite(preco) ||
+    preco <= 0
+  ) {
+    avisoCadastro.textContent = "Informe nome e preço válidos.";
+    avisoCadastro.classList.add("alert-warning");
+    return;
+  }
+
+  avisoCadastro.textContent = "Serviço cadastrado!";
+  avisoCadastro.classList.add("alert-success");
+});
